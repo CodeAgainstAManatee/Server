@@ -4,7 +4,8 @@
   "description": "Code Against A Manatee. Play call/response card games with ease!",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha && codecov && npm run lint",
+    "testlocal": "istanbul cover node_modules/mocha/bin/_mocha && npm run lint",
     "start": "node server.js",
     "lint": "eslint ."
   },
@@ -17,7 +18,8 @@
   },
   "keywords": [
     "call-response",
-    "card-game"
+    "card-game",
+    "cards-against-humanity"
   ],
   "author": {
     "name": "Austin Peterson",
@@ -31,10 +33,12 @@
   "homepage": "https://github.com/CodeAgainstAManatee/Server#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "codecov": "^2.1.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0"
   }
 }
