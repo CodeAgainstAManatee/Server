@@ -1,0 +1,30 @@
+{
+  "name": "@code-against-a-manatee/server",
+  "version": "0.0.1-alpha.0",
+  "description": "Code Against A Manatee. Play call/response card games with ease!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeAgainstAManatee/Server.git"
+  },
+  "engines": {
+    "node": ">6.9"
+  },
+  "keywords": [
+    "call-response",
+    "card-game"
+  ],
+  "author": {
+    "name": "Austin Peterson",
+    "email": "austin@akpwebdesign.com",
+    "url": "https://blog.akpwebdesign.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeAgainstAManatee/Server/issues"
+  },
+  "homepage": "https://github.com/CodeAgainstAManatee/Server#readme"
+}
