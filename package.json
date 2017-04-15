@@ -4,14 +4,16 @@
   "description": "Code Against A Manatee. Play call/response card games with ease!",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeAgainstAManatee/Server.git"
   },
   "engines": {
-    "node": ">6.9"
+    "node": ">6.0.0"
   },
   "keywords": [
     "call-response",
@@ -29,6 +31,10 @@
   "homepage": "https://github.com/CodeAgainstAManatee/Server#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
     "mocha": "^3.2.0"
   }
 }
