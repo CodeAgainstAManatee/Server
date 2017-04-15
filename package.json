@@ -26,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/CodeAgainstAManatee/Server/issues"
   },
-  "homepage": "https://github.com/CodeAgainstAManatee/Server#readme"
+  "homepage": "https://github.com/CodeAgainstAManatee/Server#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
