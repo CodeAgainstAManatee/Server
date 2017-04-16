@@ -7,7 +7,7 @@ describe('Card', () => {
   it('should throw an error when no options are provided', () => {
     assert.throws(() => {
       card = new Card();
-    }, Errors.CardError, 'No options specified!');
+    }, Errors.GameObjectError, 'No options specified!');
   });
   it('should be able to be constructed using options', () => {
     card = new Card({
@@ -42,5 +42,15 @@ describe('Card', () => {
         expcode: 'TEST'
       });
     }, Errors.CardError, 'No card text specified!');
+  });
+  it('should have an automatically generated UUID', () => {
+    card = new Card({
+      text: 'test text',
+      font: 'Arial',
+      bgcolor: '#000000',
+      fgcolor: '#FFFFFF',
+      expcode: 'TEST'
+    });
+    assert.isString(card.uuid);
   });
 });

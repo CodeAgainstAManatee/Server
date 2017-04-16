@@ -7,7 +7,7 @@ describe('Player', () => {
   it('should throw an error when no options are provided', () => {
     assert.throws(() => {
       player = new Player();
-    }, Errors.PlayerError, 'No options specified!');
+    }, Errors.GameObjectError, 'No options specified!');
   });
   it('should be able to be constructed using options', () => {
     player = new Player({
@@ -19,5 +19,11 @@ describe('Player', () => {
     assert.throws(() => {
       player = new Player({});
     }, Errors.PlayerError, 'No player name specified!');
+  });
+  it('should have an automatically generated UUID', () => {
+    player = new Player({
+      name: 'Test Player'
+    });
+    assert.isString(player.uuid);
   });
 });
