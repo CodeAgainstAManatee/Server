@@ -14,7 +14,7 @@
     "url": "git+https://github.com/CodeAgainstAManatee/Server.git"
   },
   "engines": {
-    "node": ">6.0.0"
+    "node": ">7.9.0"
   },
   "keywords": [
     "call-response",
