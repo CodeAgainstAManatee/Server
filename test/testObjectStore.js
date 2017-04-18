@@ -3,6 +3,15 @@ const ObjectStore = require('../lib/GameObjects/ObjectStore');
 const GameObject = require('../lib/GameObjects/GameObject');
 const Errors = require('../lib/Errors');
 const stubData = require('./stubData');
+
+// This line adds an extra property to the Object prototype so that the if/else
+// inside the for...in loop in ObjectStore actually hits the else branch. We
+// could just ignore that if branch for the purposes of code coverage, as we
+// were doing before, but I kind of like the idea of having truly 100% test
+// coverage, so here we go.
+// eslint-disable-next-line no-extend-native
+Object.prototype.codeCoverage100PercentPlease = true;
+
 let objectStore;
 let testObject = new GameObject({});
 
