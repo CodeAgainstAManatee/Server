@@ -18,7 +18,7 @@ describe('Player', () => {
   it('should throw an error when no name is provided', () => {
     assert.throws(() => {
       player = new Player({});
-    }, Errors.PlayerError, 'No player name specified!');
+    }, Errors.PlayerError, 'No name specified!');
   });
   it('should have an automatically generated UUID', () => {
     player = new Player({

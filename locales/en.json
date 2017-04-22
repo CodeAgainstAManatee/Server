@@ -1,0 +1,33 @@
+{
+	"errors": {
+		"general": {
+			"no-name": "No name specified!",
+			"no-options": "No options specified!"
+		},
+		"card": {
+			"no-card-text": "No card text specified!"
+		},
+		"cardpack": {
+			"no-cards": "No cards provided!"
+		},
+		"game": {
+			"no-owner": "No owner specified!",
+			"non-player": "Attempted to set owner to a non-Player object!",
+			"no-object-store": "No object store specified!",
+			"non-object-store": "Attempted to set store to a non-ObjectStore object!",
+			"player-add": "Cannot add a player to a finished game!",
+			"no-object": "The object specified does not exist!",
+			"uuid-not-player": "UUID does not correspond to a Player!",
+			"player-rm": "Cannot remove a player from a finished game!",
+			"change-pack": "Cannot change card packs for a running or finished game!",
+			"uuid-not-pack": "UUID does not correspond to a CardPack!"
+		},
+		"objectstore": {
+			"no-game-object": "That object is not a GameObject!",
+			"already-exists": "That object already exists in the store!",
+			"unknown-class": "That object has a class that this store does not know!",
+			"class-required": "You must specify a class to retrieve!"
+		}
+	},
+	"test-string": "This is a test"
+}
