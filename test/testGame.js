@@ -79,6 +79,32 @@ describe('Game', () => {
     });
     assert.isString(game.uuid);
   });
+  it('should allow game state to be changed', () => {
+    game = new Game({
+      name: 'test game',
+      store: store,
+      owner: stubData.players[0]
+    });
+    game.state = GameState.WAITING_FOR_PLAYERS;
+    assert.equal(game.state, GameState.WAITING_FOR_PLAYERS);
+  });
+  it('should disallow illegal game state changes', () => {
+    game = new Game({
+      name: 'test game',
+      store: store,
+      owner: stubData.players[0]
+    });
+    game.state = GameState.WAITING_FOR_PLAYERS;
+    assert.throws(() => {
+      game.state = GameState.INITIALIZING;
+    }, Errors.GameError, 'Illegal game state change!');
+    assert.throws(() => {
+      game.state = GameState.FINISHED + 1;
+    }, Errors.GameError, 'Illegal game state change!');
+    assert.throws(() => {
+      game.state = undefined;
+    }, Errors.GameError, 'No game state specified!');
+  });
 
   let game1 = new Game({
     name: 'test game',
@@ -105,7 +131,7 @@ describe('Game', () => {
       }, Errors.GameError, 'UUID does not correspond to a Player!');
     });
     it('should throw an error when not in a valid GameState', () => {
-      game1.state = GameState.FINISHED;
+      game1._state = GameState.FINISHED;
       assert.throws(() => {
         game1.addPlayer(stubData.players[2].uuid);
       }, Errors.GameError, 'Cannot add a player to a finished game!');
@@ -114,32 +140,32 @@ describe('Game', () => {
 
   describe('.removePlayer()', () => {
     it('should remove a player from the game', () => {
-      game1.state = GameState.INITIALIZING;
+      game1._state = GameState.INITIALIZING;
       game1.removePlayer(stubData.players[2].uuid);
       assert.equal(game1.players.length, 2);
     });
     it('should throw an error when not in a valid GameState', () => {
-      game1.state = GameState.FINISHED;
+      game1._state = GameState.FINISHED;
       assert.throws(() => {
         game1.removePlayer(stubData.players[2].uuid);
       }, Errors.GameError, 'Cannot remove a player from a finished game!');
     });
     it('should set the owner to another player if the owner is removed', () => {
-      game1.state = GameState.INITIALIZING;
+      game1._state = GameState.INITIALIZING;
       let currentOwner = game1.owner.uuid;
       game1.removePlayer(currentOwner);
       assert.notEqual(game1.owner.uuid, currentOwner);
     });
     it('should set game state to finished when last player is removed', () => {
-      game1.state = GameState.INITIALIZING;
+      game1._state = GameState.INITIALIZING;
       game1.removePlayer(game1.owner.uuid);
-      assert.equal(game1.state, GameState.FINISHED);
+      assert.equal(game1._state, GameState.FINISHED);
     });
   });
 
   describe('.addCardPack()', () => {
     it('should add a card pack to the game', () => {
-      game1.state = GameState.INITIALIZING;
+      game1._state = GameState.INITIALIZING;
       game1.addCardPack(stubData.cardPacks[0].uuid);
       assert.equal(game1.cardPacks.length, 1);
     });
@@ -158,7 +184,7 @@ describe('Game', () => {
       }, Errors.GameError, 'UUID does not correspond to a CardPack!');
     });
     it('should throw an error when not in a valid GameState', () => {
-      game1.state = GameState.IN_GAME;
+      game1._state = GameState.IN_GAME;
       assert.throws(() => {
         game1.addCardPack(stubData.cardPacks[1].uuid);
       }, Errors.GameError,
@@ -168,19 +194,19 @@ describe('Game', () => {
 
   describe('.removeCardPack()', () => {
     it('should remove a card pack from the game', () => {
-      game1.state = GameState.INITIALIZING;
+      game1._state = GameState.INITIALIZING;
       game1.removeCardPack(stubData.cardPacks[1].uuid);
       assert.equal(game1.cardPacks.length, 1);
     });
     it('should throw an error when not in a valid GameState', () => {
-      game1.state = GameState.IN_GAME;
+      game1._state = GameState.IN_GAME;
       assert.throws(() => {
         game1.removeCardPack(stubData.cardPacks[0].uuid);
       }, Errors.GameError,
          'Cannot change card packs for a running or finished game!');
     });
     it('should allow all card packs to be removed from the game', () => {
-      game1.state = GameState.INITIALIZING;
+      game1._state = GameState.INITIALIZING;
       game1.removeCardPack(stubData.cardPacks[0].uuid);
       assert.equal(game1.cardPacks.length, 0);
     });

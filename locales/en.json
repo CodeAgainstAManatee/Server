@@ -20,7 +20,9 @@
 			"uuid-not-player": "UUID does not correspond to a Player!",
 			"player-rm": "Cannot remove a player from a finished game!",
 			"change-pack": "Cannot change card packs for a running or finished game!",
-			"uuid-not-pack": "UUID does not correspond to a CardPack!"
+			"uuid-not-pack": "UUID does not correspond to a CardPack!",
+			"no-state": "No game state specified!",
+			"invalid-state-change": "Illegal game state change!"
 		},
 		"objectstore": {
 			"no-game-object": "That object is not a GameObject!",
