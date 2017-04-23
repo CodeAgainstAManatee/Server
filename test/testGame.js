@@ -222,4 +222,39 @@ describe('Game', () => {
       assert.equal(valid, false);
     });
   });
+
+  let game2 = new Game({
+    name: 'test game',
+    store: store,
+    owner: stubData.players[0]
+  });
+  describe('.start()', () => {
+    it('should only allow starting a game that is waiting for players', () => {
+      assert.throws(() => {
+        game2.start();
+      }, Errors.GameError, 'That game can\'t be started!');
+    });
+    it('should only allow starting a game that has enough players', () => {
+      assert.throws(() => {
+        game2.state = GameState.WAITING_FOR_PLAYERS;
+        game2.start();
+      }, Errors.GameError, 'At least 3 players are required!');
+    });
+    it('should move the game\'s state to STARTING', () => {
+      game2.addPlayer(stubData.players[1].uuid);
+      game2.addPlayer(stubData.players[2].uuid);
+      game2.start();
+      assert.equal(game2.state, GameState.STARTING);
+    });
+  });
+  describe('.playGame()', () => {
+    let testGame;
+    it('should return a Promise where the game logic is run', () => {
+      testGame = game2.playGame();
+      assert.isFunction(testGame.then);
+    });
+    it('should assign a random player as the starting Card Czar', () => {
+      assert.isString(game2._currentCzar.uuid);
+    });
+  });
 });
